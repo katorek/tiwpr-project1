@@ -3,6 +3,7 @@ package com.wjaronski.tiwprproject1.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.common.collect.ImmutableList;
 import com.wjaronski.tiwprproject1.model.Meal;
 import com.wjaronski.tiwprproject1.repository.MealRepository;
 import com.wjaronski.tiwprproject1.resourceProcessors.MealResourceProcessor;
@@ -18,16 +19,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.nio.charset.Charset;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -67,24 +67,37 @@ public class MealControllerTest {
     }
 
     @Test
-    public void all() {
-        throw new NotImplementedException();
+    public void all() throws Exception {
+        when(service.findAll()).thenReturn(ImmutableList.of(meal));
+
+        mockMvc.perform(get(BASE_PATH))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("content.length()", is(1)))
+                .andExpect(jsonPath("content[0].id", is(meal.getId())))
+                .andExpect(jsonPath("content[0].name", is(meal.getName())))
+                .andExpect(jsonPath("content[0].description", is(meal.getDescription())))
+                .andExpect(jsonPath("content[0].weight", is(meal.getWeight())))
+                .andExpect(jsonPath("content[0].price", is(meal.getPrice())));
     }
 
     @Test
-    public void getOne() {
-        throw new NotImplementedException();
+    public void getOne() throws Exception {
+        given(service.findOne(meal.getId())).willReturn(meal);
+
+        ResultActions actions = mockMvc.perform(get(BASE_PATH + "/" + meal.getId()));
+
+        verifyJson(actions);
     }
 
     @Test
-    public void delete() {
-        throw new NotImplementedException();
+    public void deleteReturn() throws Exception {
+        mockMvc.perform(delete(BASE_PATH + "/" + meal.getId()))
+                .andExpect(status().isOk());
+
     }
 
     @Test
     public void add_whenValidMeal_shouldReturn200() throws Exception {
-        Meal meal = DataHelper.getValidMeal();
-
         when(service.add(any())).thenReturn(meal);
 
         final ResultActions result = this.mockMvc.perform(post(BASE_PATH)
@@ -108,7 +121,7 @@ public class MealControllerTest {
                 .andExpect(jsonPath("links[0].href", is("/meals")))
                 .andExpect(jsonPath("links[1].rel", is("self")))
                 .andExpect(jsonPath("links[1].href", is("/meals/1")))
-                .andDo(MockMvcResultHandlers.print()) // to print response in console
+//                .andDo(MockMvcResultHandlers.print()) // to print response in console
         ;
     }
 
