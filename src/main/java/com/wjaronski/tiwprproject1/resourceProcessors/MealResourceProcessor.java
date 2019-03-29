@@ -20,10 +20,6 @@ public class MealResourceProcessor implements ResourceProcessor<Resource<Meal>> 
 
         mealResource.add(linkTo(MealController.class).withRel("meals"));
         mealResource.add(linkTo(methodOn( MealController.class).getOne(mealResource.getContent().getId())).withSelfRel());
-//                add(linkTo(PersonController.class).withRel("people"));
-//        add(linkTo(methodOn(GymMembershipController.class).all(id)).withRel("memberships"));
-//        add(linkTo(methodOn(PersonController.class).get(id)).withSelfRel());
-
         return mealResource;
     }
 }
