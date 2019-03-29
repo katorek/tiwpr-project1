@@ -18,8 +18,10 @@ public class MealResourceProcessor implements ResourceProcessor<Resource<Meal>> 
     @Override
     public Resource<Meal> process(Resource<Meal> mealResource) {
 
-        mealResource.add(linkTo(MealController.class).withRel("meals"));
+        mealResource.add(linkTo(MealController.class).withRel("all_meals"));
         mealResource.add(linkTo(methodOn( MealController.class).getOne(mealResource.getContent().getId())).withSelfRel());
         return mealResource;
     }
+
+
 }

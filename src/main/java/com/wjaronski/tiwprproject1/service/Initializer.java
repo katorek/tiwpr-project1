@@ -26,7 +26,7 @@ public class Initializer {
 
         log.info("Initializing ORDERS");
         orders.save(Order.builder()
-                .content(ImmutableList.of(mealList.get(0), mealList.get(1)))
+                .meals(ImmutableList.of(mealList.get(0), mealList.get(1)))
                 .orderNum(UUID.randomUUID())
 //                .orderNum(UUID.fromString("1"))
                 .build());
