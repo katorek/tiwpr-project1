@@ -3,7 +3,7 @@ server:
 spring:
   h2:
     console:
-      path: /h2
+      path: /h2 # jdbc:h2:mem:testdb
       enabled: true
   jpa:
     hibernate:

@@ -1,5 +1,7 @@
 package com.wjaronski.tiwprproject1.controller;
 
+import com.wjaronski.tiwprproject1.model.HALResource;
+import com.wjaronski.tiwprproject1.model.Order;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceProcessor;
@@ -26,11 +28,18 @@ public class AbstractRestController {
 
         data.forEach(t -> list.add(processResource(t, processor)));
 
+
         return new Resources<>(list, links);
     }
+
 
     protected <T> Resource<T> processResource(T data,
                                               ResourceProcessor<Resource<T>> processor){
         return processor.process(new Resource<>(data));
     }
+
+//    protected HALResource<> processResource(Order order){
+//
+//        return new Resource<>(order);
+//    }
 }
