@@ -4,6 +4,7 @@ import com.wjaronski.tiwprproject1.model.Meal;
 import com.wjaronski.tiwprproject1.resourceProcessors.MealResourceProcessor;
 import com.wjaronski.tiwprproject1.service.MealService;
 import lombok.AllArgsConstructor;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import static com.wjaronski.tiwprproject1.controller.AbstractRestController.HAL_JSON;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 /**
  * Created by Wojciech Jaronski
@@ -30,7 +32,8 @@ public class MealController extends AbstractRestController {
         return ResponseEntity.ok(
                 wrapToResources(
                         service.findAll(),
-                        mealProcessor));
+                        mealProcessor,
+                        linkTo(MealController.class).withSelfRel()));
     }
 
     @GetMapping("/{id}")

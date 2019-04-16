@@ -1,17 +1,37 @@
+spring.profiles:
+  active: mysql
+#  active: h2
+logging:
+  level:
+    root: INFO
+---
 server:
   port: 8889
 spring:
+  profiles: mysql
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql//localhost:3306/meal_db
+#    driver: com.mysql.jc.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/meal_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#    url: jdbc:mysql://localhost:3306/meal_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: meal_user
     password: meal_pwd
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
-    #    driver: com.mysql.jdbc.Driver 
-        #  h2:
-        #    console:
-        #      path: /h2
-        #      enabled: true
+
+---
+server:
+  port: 8099
+spring:
+  profiles: h2
+  h2:
+    console:
+      path: /h2 # jdbc:h2:mem:testdb
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  jackson:
+    default-property-inclusion=NON_NULL:

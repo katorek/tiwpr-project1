@@ -1,13 +1,13 @@
-server:
-  port: 8099
-spring:
-  h2:
-    console:
-      path: /h2
-      enabled: true
-  jpa:
-    hibernate:
-      ddl-auto: create
-    show-sql: false
-  jackson:
-    default-property-inclusion=NON_NULL:
+#server:
+#  port: 8099
+#spring:
+#  h2:
+#    console:
+#      path: /h2
+#      enabled: true
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    show-sql: false
+#  jackson:
+#    default-property-inclusion=NON_NULL:

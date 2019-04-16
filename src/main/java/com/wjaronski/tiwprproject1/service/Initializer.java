@@ -24,6 +24,15 @@ public class Initializer {
                        OrderRepository orders) {
         List<Meal> mealList = (List<Meal>) meals.findAll();
 
+        if(mealList.isEmpty()){
+            meals.saveAll(ImmutableList.of(
+                    new Meal(1, "Burger", "Opis burgera", 122.3, 10.5),
+                    new Meal(2, "Tortilla", "Tortilla pszenna", 100.2, 15.99),
+                    new Meal(3, "Frytki", "Małe frytki", 50d, 4d)
+            ));
+            mealList = (List<Meal>) meals.findAll();
+        }
+        
         log.info("Initializing ORDERS");
         orders.save(Order.builder()
                 .meals(ImmutableList.of(mealList.get(0), mealList.get(1)))
