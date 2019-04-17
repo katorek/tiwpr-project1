@@ -8,7 +8,6 @@ import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 @SpringBootApplication
 @EnableHypermediaSupport(type= {EnableHypermediaSupport.HypermediaType.HAL})
-@EnableJpaRepositories("com.wjaronski.tiwprproject1.repository")
 public class TiwprProject1Application {
 
     public static void main(String[] args) {

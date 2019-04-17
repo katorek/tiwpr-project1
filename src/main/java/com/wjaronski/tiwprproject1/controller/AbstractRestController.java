@@ -32,7 +32,6 @@ public class AbstractRestController {
         return new Resources<>(list, links);
     }
 
-
     protected <T> Resource<T> processResource(T data,
                                               ResourceProcessor<Resource<T>> processor) {
         Resource<T> resource = new Resource<>(data);
@@ -46,21 +45,5 @@ public class AbstractRestController {
         return processor.process(new Resource<>(data));
     }
 
-//    protected Resource<OrderResource> processOrderResource(Order order,
-//                                                   OrderResourceProcessor orderResourceProcessor,
-//                                                   MealResourceProcessor mealResourceProcessor) {
-////        Resource<T> resource = new Resource<>(order);
-////        Order o = (Order) data;
-//
-//        OrderResource or = new OrderResource(order, wrapToResources(order.getMeals(), mealResourceProcessor));
-//
-//
-//        return orderResourceProcessor.processOrder(or);
-//    }
 
-
-//    protected HALResource<> processResource(Order order){
-//
-//        return new Resource<>(order);
-//    }
 }
