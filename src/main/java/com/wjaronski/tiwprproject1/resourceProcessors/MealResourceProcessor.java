@@ -16,6 +16,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @Component
 public class MealResourceProcessor implements ResourceProcessor<Resource<Meal>> {
+
     @Override
     public Resource<Meal> process(Resource<Meal> mealResource) {
 
@@ -23,6 +24,5 @@ public class MealResourceProcessor implements ResourceProcessor<Resource<Meal>> 
         mealResource.add(linkTo(methodOn( MealController.class).getOne(mealResource.getContent().getId())).withSelfRel());
         return mealResource;
     }
-
 
 }
