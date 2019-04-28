@@ -1,0 +1,36 @@
+spring.profiles:
+  active: mysql
+#  active: h2
+logging:
+  level:
+    root: INFO
+server:
+  port: 8080
+#fileDataPath: E:\\Projekty\\tabula\\KFC_przerobiony_2.csv
+---
+spring:
+  profiles: mysql
+  datasource:
+    url: jdbc:mysql://192.168.1.8:3306/meal_db
+    #    url: jdbc:mysql://jaronsky.ddns.net:3306/meal_db
+    # sometimes it is required to append to url following parameters:
+    # ?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: meal_user
+    password: meal_pwd
+  jpa:
+    hibernate:
+      ddl-auto: none
+    #      ddl-auto: update
+    show-sql: false
+
+---
+spring:
+  profiles: h2
+  h2:
+    console:
+      path: /h2
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true

@@ -14,9 +14,9 @@ public class DataHelper {
         return Meal.builder()
                 .id(1)
                 .name("name")
-                .description("description")
-                .price(12.3)
-                .weight(7.89)
+//                .description("description")
+//                .price(12.3)
+//                .weight(7.89)
                 .build();
     }
 
