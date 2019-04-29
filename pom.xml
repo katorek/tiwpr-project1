@@ -60,7 +60,6 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
-            <!--<scope>test</scope>-->
         </dependency>
 
 
@@ -105,19 +104,10 @@
             <artifactId>spring-hateoas</artifactId>
             <!--<version>0.25.1.RELEASE</version>-->
         </dependency>
-        <dependency>
-            <groupId>org.sonatype.plexus</groupId>
-            <artifactId>plexus-sec-dispatcher</artifactId>
-            <version>1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-            <version>1.5.9.RELEASE</version>
-        </dependency>
         <!--<dependency>-->
-        <!--<groupId>org.springframework.security</groupId>-->
-        <!--<artifactId>spring-security-config</artifactId>-->
+        <!--<groupId>org.sonatype.plexus</groupId>-->
+        <!--<artifactId>plexus-sec-dispatcher</artifactId>-->
+        <!--<version>1.4</version>-->
         <!--</dependency>-->
     </dependencies>
 
