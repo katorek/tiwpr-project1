@@ -1,11 +1,18 @@
 spring.profiles:
-  active: mysql
+  active: mysql,dev
 #  active: h2
 logging:
   level:
     root: INFO
 server:
   port: 8080
+server.tomcat.remote_ip_header: x-forwarded-for
+server.tomcat.protocol_header: x-forwarded-proto
+
+http.port: 8081
+  server.ssl.key-password=pwd
+server.ssl.key-store: classpath:applicationssl.jks
+server.ssl.key-store-type: JKS
 #fileDataPath: E:\\Projekty\\tabula\\KFC_przerobiony_2.csv
 ---
 spring:
@@ -34,3 +41,11 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+---
+spring:
+  profiles: dev
+---
+spring:
+  profiles: prod
+
+#server.port: 8443
